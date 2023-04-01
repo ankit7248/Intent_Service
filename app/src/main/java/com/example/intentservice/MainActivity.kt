@@ -11,14 +11,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnStart.setOnClickListener {
-            Intent(this,MyIntentService::class.java).also {
-                startService(it)
+           Intent(this@MainActivity, MyService::class.java).also {
+               startService(it)
                 tvServiceInfo.text = "Service running"
+
+            }
+
+        }
+
+        btnStop.setOnClickListener {
+            Intent(this@MainActivity, MyService::class.java).also {
+                stopService(it)
+                tvServiceInfo.text = "Service stopped"
+            }
+
+        }
+        btnSend_Data.setOnClickListener {
+           Intent(this@MainActivity, MyService::class.java).also {
+                val dataString = Data_String.text.toString()
+                it.putExtra("Extra_Data", dataString)
+                startService(it)
             }
         }
-        btnStop.setOnClickListener {
-        MyIntentService.stopService()
-        tvServiceInfo.text = "Service stopped"
-       }
     }
 }

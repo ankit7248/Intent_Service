@@ -26,6 +26,9 @@
                 android:value="" />
         </activity>
         <service android:name="MyIntentService"/>
+        <service android:name=".MyService">
+
+        </service>
     </application>
 
 </manifest>
